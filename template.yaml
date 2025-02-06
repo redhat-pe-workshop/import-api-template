@@ -34,10 +34,12 @@ spec:
         gitlabOrganization:
           title: GitLab Organization of Existing API
           type: string
+          default: parasol
         repositoryName:
           title: Repository name of Existing API
           type: string
           description: Please ensure this repo exists
+          default: parasol-store-api
         apiPathText:
           title: API specification path
           description: This will need to be the full path where the API specification is stored in the repository. 
@@ -45,7 +47,7 @@ spec:
         apiType:
           title: Type of API
           type: string
-          default: OpenAPI
+          default: openapi
           description: Usual types are openapi, 
           enum:
           - openapi
@@ -69,15 +71,17 @@ spec:
         envelopeGitlabOrganization:
           title: Component GitLab Organization
           type: string
+          default: parasol
         envelopeRepositoryName:
           title: Component Repository name
           type: string
           description: Please ensure this repo exists
+          default: envelope-parasol-catalog
         componentName:
           title: Component Name of the API
           type: string
           description: Name of the component. (Defaults to the repo name)
-          default: 
+          default: parasol-store-api
         system:
           title: System name
           description: This is the application name that helps to group components easily
@@ -90,6 +94,7 @@ spec:
           title: Owner of the API
           description: Select an owner from the list or enter a reference to a Group or a User
           type: string
+          default: group:default/dev1
           ui:field: EntityPicker
           ui:options:
             catalogFilter:
@@ -100,11 +105,17 @@ spec:
           title: A short description of this component
           description: A short description of this component
           type: string
+          default: Open API specification for the parasol-store application
         lifecycle:
           title: Lifecycle
           type: string
           description: 'The lifecycle state of the component. Well-known and common values: experimental, production, deprecated.'
           default: experimental
+          enum:
+          - experimental
+          - production
+          - deprecated
+          - other
 
   steps:
     - id: fetch-envelope=repo

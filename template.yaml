@@ -123,7 +123,7 @@ spec:
       action: fetch:template
       targetPath: ../.
       input:
-        url: {{ 'https://${{ parameters.gitlabHost }}/${{ parameters.gitlabOrganization }}/${{ parameters.allLocationRepositoryName }}' }}
+        url: 'https://${{ parameters.gitlabHost }}/${{ parameters.gitlabOrganization }}/${{ parameters.allLocationRepositoryName }}'
         
 
     # Step1: Create catalog-info file for the component
@@ -139,7 +139,7 @@ spec:
           componentName: ${{ parameters.componentName }}
           componentLifecycle: ${{ parameters.componentLifecycle }}
           description: ${{ parameters.description }}
-          destination: {{ '"${{ parameters.gitlabHost }}/${{ parameters.gitlabOrganization }}/${{ parameters.repositoryName }}"' }}
+          destination: '"${{ parameters.gitlabHost }}/${{ parameters.gitlabOrganization }}/${{ parameters.repositoryName }}"'
           host: ${{ parameters.gitlabHost }}
           owner: ${{ parameters.componentOwner }}
           orgName: ${{ parameters.gitlabOrganization }}
@@ -155,12 +155,12 @@ spec:
       name: Open PR with for all-catalog
       action: publish:gitlab:merge-request
       input: 
-        repoUrl: {{ '"${{ parameters.gitlabHost }}?repo=${{ parameters.allLocationRepositoryName }}&owner=${{ parameters.gitlabOrganization }}"' }}
+        repoUrl: '"${{ parameters.gitlabHost }}?repo=${{ parameters.allLocationRepositoryName }}&owner=${{ parameters.gitlabOrganization }}"'
         title: Open PR with catalog-info.yaml
         description: Open PR with catalog-info.yaml
-        branchName: {{ '"${{ parameters.componentName }}-create"' }}
+        branchName: '"${{ parameters.componentName }}-create"'
         sourcePath: ./patch
-        targetPath: {{ '"./${{ parameters.repositoryName }}"' }}
+        targetPath: '"./${{ parameters.repositoryName }}"'
         commitAction: create
         removeSourceBranch: true    
   output:
